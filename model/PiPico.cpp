@@ -29,7 +29,15 @@ DEALINGS IN THE SOFTWARE.
 
 using namespace codal;
 
+void pico_dmesg_flush();
 PiPico* pico_device_instance = NULL;
+
+#if CONFIG_ENABLED(DMESG_SERIAL_DEBUG)
+#include <stdio.h>
+#include "hardware/gpio.h"
+#include "hardware/uart.h"
+#endif
+
 
 /**
   * Constructor.
@@ -44,9 +52,16 @@ PiPico::PiPico() :
     io()
 {
 
+#if CONFIG_ENABLED(DMESG_SERIAL_DEBUG)
+    uart_init(uart0, 115200);
+    gpio_set_function(0, GPIO_FUNC_UART);
+#endif
+
     pico_device_instance = this;
     // Clear our status
     status = 0;
+
+    codal_dmesg_set_flush_fn(pico_dmesg_flush);
 
     // Bring up fiber scheduler.
     scheduler_init(messageBus);
@@ -69,6 +84,7 @@ PiPico::PiPico() :
   */
 void PiPico::onListenerRegisteredEvent(Event evt)
 {
+    printf("msg evt %d %d\r\n", evt.source, evt.value);
     // switch(evt.value)
     // {
     // }
@@ -88,12 +104,12 @@ void pico_dmesg_flush()
 {
 #if CONFIG_ENABLED(DMESG_SERIAL_DEBUG)
 #if DEVICE_DMESG_BUFFER_SIZE > 0
-
-    if (codalLogStore.ptr > 0 && cplay_device_instance)
+    if (codalLogStore.ptr > 0)
     {
-        for (uint32_t i=0; i<codalLogStore.ptr; i++)
-            ((PiPico *)cplay_device_instance)->serial.putc(codalLogStore.buffer[i]);
-
+        printf("flush\r\n");
+        for (uint32_t i=0; i<codalLogStore.ptr; i++){
+            uart_putc_raw(uart0, codalLogStore.buffer[i]);
+        }        
         codalLogStore.ptr = 0;
     }
 #endif
