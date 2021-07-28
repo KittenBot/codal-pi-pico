@@ -40,6 +40,7 @@ DEALINGS IN THE SOFTWARE.
 #include "Button.h"
 #include "Timer.h"
 #include "RP2040LowLevelTimer.h"
+#include "RP2040Spi.h"
 
 #include "PiPicoIO.h"
 
@@ -75,6 +76,7 @@ namespace codal
         Timer                       timer;
         MessageBus                  messageBus;
         PiPicoIO                    io;
+        RP2040SPI                   spi;
 
         /**
           * Constructor.

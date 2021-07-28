@@ -54,6 +54,8 @@ DEALINGS IN THE SOFTWARE.
 #define ID_PIN_GP20           (DEVICE_ID_IO_P0 + 20)
 #define ID_PIN_GP21           (DEVICE_ID_IO_P0 + 21)
 #define ID_PIN_GP22           (DEVICE_ID_IO_P0 + 22)
+#define ID_PIN_GP23           (DEVICE_ID_IO_P0 + 23)
+#define ID_PIN_GP24           (DEVICE_ID_IO_P0 + 24)
 #define ID_PIN_GP25           (DEVICE_ID_IO_P0 + 25)
 #define ID_PIN_GP26           (DEVICE_ID_IO_P0 + 26)
 #define ID_PIN_GP27           (DEVICE_ID_IO_P0 + 27)
@@ -82,6 +84,8 @@ DEALINGS IN THE SOFTWARE.
 #define PIN_NAME_GP20         20
 #define PIN_NAME_GP21         21
 #define PIN_NAME_GP22         22
+#define PIN_NAME_GP23         23
+#define PIN_NAME_GP24         24
 #define PIN_NAME_GP25         25
 #define PIN_NAME_GP26         26
 #define PIN_NAME_GP27         27
@@ -121,6 +125,8 @@ namespace codal
         RP2040Pin       GP20;
         RP2040Pin       GP21;
         RP2040Pin       GP22;
+        RP2040Pin       GP23;
+        RP2040Pin       GP24;
         RP2040Pin       GP25;
         RP2040Pin       GP26;
         RP2040Pin       GP27;

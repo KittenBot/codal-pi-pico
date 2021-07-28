@@ -49,12 +49,14 @@ PiPico::PiPico() :
     sysTimer(),
     timer(sysTimer),
     messageBus(),
-    io()
+    io(),
+    spi(io.GP23, io.GP20, io.GP22)
 {
 
 #if CONFIG_ENABLED(DMESG_SERIAL_DEBUG)
-    uart_init(uart0, 115200);
-    gpio_set_function(0, GPIO_FUNC_UART);
+    uart_init(uart1, 115200);
+    gpio_set_function(8, GPIO_FUNC_UART);
+    uart_puts(uart1, "hello worls\d");
 #endif
 
     pico_device_instance = this;
