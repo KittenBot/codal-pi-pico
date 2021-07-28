@@ -50,7 +50,8 @@ PiPico::PiPico() :
     timer(sysTimer),
     messageBus(),
     io(),
-    spi(io.GP23, io.GP20, io.GP22)
+    spi(io.GP23, io.GP20, io.GP22),
+    i2c(io.GP4, io.GP5)
 {
 
 #if CONFIG_ENABLED(DMESG_SERIAL_DEBUG)
