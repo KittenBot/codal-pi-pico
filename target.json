@@ -30,7 +30,9 @@
         "DEVICE_DMESG_BUFFER_SIZE":1024,
         "CODAL_DEBUG":0,
         "DEVICE_USB":0,
-        "PROCESSOR_WORD_TYPE":"uint32_t"
+        "PROCESSOR_WORD_TYPE":"uint32_t",
+        "PICO_FLOAT_SUPPORT_ROM_V1": 0,
+        "PICO_DOUBLE_SUPPORT_ROM_V1": 0
     },
     "definitions":"",
     "cpu_opts":"-mcpu=cortex-m0plus -mthumb",

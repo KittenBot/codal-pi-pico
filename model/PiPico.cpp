@@ -55,7 +55,7 @@ PiPico::PiPico() :
 {
 
 #if CONFIG_ENABLED(DMESG_SERIAL_DEBUG)
-    uart_init(uart1, 115200);
+    uart_init(uart1, 1000000);
     gpio_set_function(8, GPIO_FUNC_UART);
     uart_puts(uart1, "hello worls\d");
 #endif
